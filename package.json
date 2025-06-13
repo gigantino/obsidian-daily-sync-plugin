@@ -1,7 +1,7 @@
 {
-  "name": "daily-sync-plugin",
-  "version": "0.0.1",
-  "description": "Obsidian Daily directory sync",
+  "name": "obsidian-daily-sync-plugin",
+  "version": "0.0.2",
+  "description": "Syncs data from Obsidian to a private API.",
   "main": "main.js",
   "scripts": {
     "dev": "rollup -c -w",
