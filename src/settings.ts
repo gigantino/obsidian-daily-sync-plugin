@@ -1,9 +1,11 @@
 export interface DailySyncSettings {
-  endpoint: string;
+  contentEndpoint: string;
   authKey: string;
+  debugMode: boolean;
 }
 
 export const DEFAULT_SETTINGS: DailySyncSettings = {
-  endpoint: "http://localhost:5001/obsidian/content",
+  contentEndpoint: "http://localhost:5001/obsidian/content",
   authKey: "",
+  debugMode: false,
 };

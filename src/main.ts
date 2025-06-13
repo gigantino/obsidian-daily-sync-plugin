@@ -7,6 +7,7 @@ export default class DailySyncPlugin extends Plugin {
   settings!: DailySyncSettings;
 
   async onload() {
+    console.log("DailySync loaded.");
     await this.loadSettings();
 
     this.addSettingTab(new DailySyncSettingTab(this.app, this));
@@ -21,7 +22,7 @@ export default class DailySyncPlugin extends Plugin {
           if (!todoMap) return;
 
           await requestUrl({
-            url: this.settings.endpoint,
+            url: this.settings.contentEndpoint,
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -29,11 +30,21 @@ export default class DailySyncPlugin extends Plugin {
                 Authorization: `Bearer ${this.settings.authKey}`,
               }),
             },
-            body: JSON.stringify({ fileName: file.name, todoMap }),
+            body: JSON.stringify({
+              filePath: file.path,
+              fileName: file.name,
+              todoMap,
+            }),
             throw: true,
           });
 
-          new Notice(`DailySync: pushed ${Object.keys(todoMap).length} tasks`);
+          const debugMessage = `DailySync: pushed ${
+            Object.keys(todoMap).length
+          } tasks`;
+          console.info(debugMessage);
+          if (this.settings.debugMode) {
+            new Notice(debugMessage);
+          }
         } catch (err) {
           console.error("DailySync push failed", err);
           new Notice("DailySync: push failed (check console)");

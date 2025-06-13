@@ -12,30 +12,41 @@ export class DailySyncSettingTab extends PluginSettingTab {
   display(): void {
     const { containerEl } = this;
     containerEl.empty();
-    containerEl.createEl("h2", { text: "DailySync plugin settings" });
-
+    containerEl.createEl("h2", { text: "DailySync Settings" });
     new Setting(containerEl)
-      .setName("API endpoint")
-      .setDesc("Base URL that receives your daily note payload")
+      .setName("Content endpoint")
+      .setDesc("Endpoint called whenever the Daily directory gets edited.")
       .addText((text) =>
         text
-          .setPlaceholder("https://example.com/obsidian/content")
-          .setValue(this.plugin.settings.endpoint)
+          .setPlaceholder("e.g. http://localhost:5001/obsidian/content")
+          .setValue(this.plugin.settings.contentEndpoint)
           .onChange(async (value) => {
-            this.plugin.settings.endpoint = value.trim();
+            this.plugin.settings.contentEndpoint = value.trim();
             await this.plugin.saveSettings();
           })
       );
 
     new Setting(containerEl)
       .setName("Authorization key")
-      .setDesc("Optional bearer/API key (left blank for none)")
+      .setDesc("Optional authorization key. Can be left blank.")
       .addText((text) =>
         text
-          .setPlaceholder("abc123…")
+          .setPlaceholder("secret123...")
           .setValue(this.plugin.settings.authKey)
           .onChange(async (value) => {
             this.plugin.settings.authKey = value.trim();
+            await this.plugin.saveSettings();
+          })
+      );
+
+    new Setting(containerEl)
+      .setName("Debug mode")
+      .setDesc("Unemployement (TM).")
+      .addToggle((toggle) =>
+        toggle
+          .setValue(this.plugin.settings.debugMode)
+          .onChange(async (value) => {
+            this.plugin.settings.debugMode = value;
             await this.plugin.saveSettings();
           })
       );

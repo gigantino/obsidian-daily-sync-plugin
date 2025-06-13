@@ -1,6 +1,6 @@
 {
   "name": "obsidian-daily-sync-plugin",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Syncs data from Obsidian to a private API.",
   "main": "main.js",
   "scripts": {
