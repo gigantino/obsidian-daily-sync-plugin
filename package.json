@@ -1,0 +1,19 @@
+{
+  "name": "daily-sync-plugin",
+  "version": "0.0.1",
+  "description": "Obsidian Daily directory sync",
+  "main": "main.js",
+  "scripts": {
+    "dev": "rollup -c -w",
+    "build": "rollup -c"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.2",
+    "obsidian": "^1.5.0",
+    "rollup": "^4.15.0",
+    "tslib": "^2.8.1",
+    "typescript": "^5.4.0"
+  }
+}
