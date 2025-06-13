@@ -1,6 +1,0 @@
-{
-  "contentEndpoint": "http://localhost:5001/obsidian/content",
-  "authKey": "",
-  "debugMode": true,
-  "dailyContentEndpoint": "http://localhost:5001/obsidian/content"
-}
